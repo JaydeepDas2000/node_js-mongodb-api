@@ -3,6 +3,11 @@ const { MongoClient } = require('mongodb');
 const express = require('express');
 const mongoose = require('mongoose');
 
+const todoRoutes = require('./routes/TodoRoutes');
+
+const app = express();
+app.use(express.json());
+const port = 3000
 
 const url = process.env.MONGODB_CONNECTION;
 mongoose.connect(url);
@@ -16,10 +21,13 @@ db.once('open', () => {
     console.log("connection successful");
 })
 
-const app = express();
 app.get("/", (req, res) => {
     res.send("App is working");
 })
 
+app.use('/api', todoRoutes);
 
-app.listen(3000);
+
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
