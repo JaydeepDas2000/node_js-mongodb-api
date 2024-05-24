@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const todo_note = new mongoose.Schema({
     title: {
         type: String,
-        require: true,
+        required: true,
         minlength: 3
     },
     date: {
@@ -12,7 +12,7 @@ const todo_note = new mongoose.Schema({
     },
     note: {
         type: String,
-        require: true,
+        required: true,
     },
     done: {
         type: Boolean
